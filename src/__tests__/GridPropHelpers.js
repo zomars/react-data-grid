@@ -29,5 +29,8 @@ module.exports = {
   },
   rowsCount : function(){
     return _rows.length;
+  },
+  addRow: function(r){
+    _rows.push(r);
   }
 }

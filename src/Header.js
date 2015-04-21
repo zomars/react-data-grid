@@ -110,7 +110,12 @@ var Header = React.createClass({
 
   getColumnPosition(column: Column): ?number {
     var state = this.state.resizing || this.props;
-    var pos = state.columns.columns.indexOf(column);
+    var pos = -1;
+    state.columns.columns.forEach((c,idx) => {
+      if(c.key === column.key){
+        pos = idx;
+      }
+    });
     return pos === -1 ? null : pos;
   },
 

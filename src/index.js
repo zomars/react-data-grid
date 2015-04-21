@@ -1,7 +1,7 @@
 /* @flow */
 'use strict';
 
-var Grid = require('./addons/grids/ReactDataGrid');
+var Grid = require('./ReactDataGrid');
 var Row  = require('./Row');
 var Cell = require('./Cell');
 

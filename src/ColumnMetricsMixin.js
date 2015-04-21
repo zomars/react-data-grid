@@ -3,8 +3,9 @@
 var ColumnMetrics        = require('./ColumnMetrics');
 var DOMMetrics           = require('./DOMMetrics');
 Object.assign            = require('object-assign');
-var PropTypes            = require('react').PropTypes;
-
+var React                = require('react');
+var PropTypes            = React.PropTypes;
+var CheckboxEditor       = require('./addons/editors/CheckboxEditor');
 
 type ColumnMetricsType = {
     columns: Array<Column>;
@@ -50,22 +51,23 @@ module.exports = {
         this.setState(this.getColumnMetricsType(nextProps));
       } else {
         var index = {};
-        this.state.columns.columns.forEach((c) => {
+        this.state.columnInfo.columns.forEach((c) => {
           index[c.key] = {width: c.width, left: c.left};
         });
-        var nextColumns = Object.assign(this.state.columns, {
+        var nextColumns = Object.assign(this.state.columnInfo, {
           columns: nextProps.columns.map((c) => Object.assign(c, index[c.key]))
         });
-        this.setState({columns: nextColumns});
+        this.setState({columnInfo: nextColumns});
       }
     }
   },
 
   getColumnMetricsType(props: ColumnMetricsType, initial: ?number): { columns: ColumnMetricsType; gridWidth: number } {
     var totalWidth = initial ? initial : this.DOMMetrics.gridWidth();
+    var cols = this.getDecoratedColumns(props.columns);
     return {
-      columns: ColumnMetrics.calculate({
-        columns: props.columns,
+      columnInfo: ColumnMetrics.calculate({
+        columns: cols,
         totalWidth: totalWidth,
         minColumnWidth: props.minColumnWidth
       }),
@@ -73,12 +75,35 @@ module.exports = {
     };
   },
 
+  getDecoratedColumns: function(columns: Array<ExcelColumn>): Array<ExcelColumn> {
+    var cols = columns.map(function(column) {
+                column = Object.assign({}, column);
+                if (column.sortable) {
+                  var sortDirection = this.state.sortColumn === column.key ?  this.state.sortDirection : DEFINE_SORT.NONE;
+                  column.headerRenderer = <SortableHeaderCell columnKey={column.key} onSort={this.handleSort} sortDirection={sortDirection}/>;
+                }
+                return column;
+              }, this);
+    if(this.props.enableRowSelect){
+      cols.unshift({
+        key: 'select-row',
+        name: '',
+        formatter : <CheckboxEditor/>,
+        onRowSelect :this.handleRowSelect,
+        filterable : false,
+        headerRenderer : <input type="checkbox" onChange={this.handleCheckboxChange} />,
+        width : 60
+      });
+    }
+  return cols;
+  },
+
   metricsUpdated() {
     this.setState(this.getColumnMetricsType(this.props));
   },
 
   onColumnResize(index: number, width: number) {
-    var columns = ColumnMetrics.resizeColumn(this.state.columns, index, width);
-    this.setState({columns});
+    var columnInfo = ColumnMetrics.resizeColumn(this.state.columnInfo, index, width);
+    this.setState({columnInfo});
   }
 };

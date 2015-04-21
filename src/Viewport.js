@@ -51,12 +51,12 @@ var Viewport = React.createClass({
         <Canvas
           ref="canvas"
           totalWidth={this.props.totalWidth}
-          width={this.props.columns.width}
+          width={this.props.columnInfo.width}
           rowGetter={this.props.rowGetter}
           rowsCount={this.props.rowsCount}
           selectedRows={this.props.selectedRows}
           expandedRows={this.props.expandedRows}
-          columns={this.props.columns.columns}
+          columns={this.props.columnInfo.columns}
           rowRenderer={this.props.rowRenderer}
           visibleStart={this.state.visibleStart}
           visibleEnd={this.state.visibleEnd}
