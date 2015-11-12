@@ -43,7 +43,7 @@ Atom
 Atom is a text editor that's modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever ...
 [Read more...](https://atom.io/)
 
-![alt tag](http://og.github.com/atom-mark/atom-mark@1200x630.png =1000x500)
+![alt tag](http://og.github.com/atom-mark/atom-mark@1200x630.png)
 
 If you don’t already have Node.js, download it and install it from [here](https://nodejs.org/en/).
 
