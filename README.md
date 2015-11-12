@@ -39,11 +39,18 @@ Clone the repository on your machine
 
 We recommend using [ATOM](https://atom.io/) for your text editor. You can install it from [here](https://atom.io/).This is not the only way of going through the project, you can use the editor you are most familiar with.
 
-If you donít already have Node.js, download it and install it from [here](https://nodejs.org/en/).
+
+	
+Atom
+Atom is a text editor that's modern, approachable, yet hackable to the core‚Äîa tool you can customize to do anything but also use productively without ever ...
+Read more...
+
+
+If you don‚Äôt already have Node.js, download it and install it from [here](https://nodejs.org/en/).
 
 In the command-line, at the project directory, run the command "npm install". This should install all the packages you need to run the application.
 
-Once the packages are installed, run ìnpm startî to build the source files, run the tests, and launch the examples application in your browser.
+Once the packages are installed, run ‚Äúnpm start‚Äù to build the source files, run the tests, and launch the examples application in your browser.
 
 Then have fun playing with it :-) 
 
