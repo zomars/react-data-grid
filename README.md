@@ -29,6 +29,24 @@ Overview
 
 ReactDataGrid is an advanced JavaScript spreadsheet component built using React
 
+
+Developers 
+--------
+
+Install the project and run it in no time: 
+
+Clone the repository on your machine
+
+We recommend using [ATOM](https://atom.io/) for your text editor. You can install it from [here](https://atom.io/).This is not the only way of going through the project, you can use the editor you are most familiar with.
+
+If you don’t already have Node.js, download it and install it from [here](https://nodejs.org/en/).
+
+In the command-line, at the project directory, run the command "npm install". This should install all the packages you need to run the application.
+
+Once the packages are installed, run “npm start” to build the source files, run the tests, and launch the examples application in your browser.
+
+Then have fun playing with it :-) 
+
 Features
 --------
 
@@ -58,3 +76,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md)
 Credits 
 ------------
 This project has been built upon the great work done by [Prometheus Research](https://github.com/prometheusresearch). For the original project, please click [here]( https://github.com/prometheusresearch/react-grid). It is released under [MIT](https://github.com/adazzle/react-data-grid/blob/master/LICENSE)
+git
