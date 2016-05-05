@@ -67,7 +67,85 @@ describe('Editor Container Tests', () => {
       expect(editor.props.column).toEqual(fakeColumn);
     });
   });
+  
+  describe('Select / drop down lists', () => {
+    
+  });
+  
+  describe('Caret position tests', () => {
+    //NOTE: these tests dont add huge value
+    // but, till we have x-browser tests, its the best we can do
+    // with x-briowser tests, we shoudl be checking the actual functionality (so render a text box and click right 3x)
+    let fakeInput;
+    let fakeTextRange;
+    beforeEach(() => {
+      component = TestUtils.renderIntoDocument(<EditorContainer
+        rowData={rowData}
+        value={'Adwolf'}
+        cellMetaData={cellMetaData}
+        column={fakeColumn}
+        height={50}/>);
+        
+      fakeTextRange = {
+        moveStart: () => {},
+        collapse: () => {},
+        select: () => {}
+      };  
+      fakeInput = {
+        value: 'test',
+        setSelectionRange: () => { },
+        createTextRange: () => { return fakeTextRange; },
+      };
+    });
 
+   
+    
+    it('should use setSelectionRange', () => {
+      let editor = TestUtils.findRenderedComponentWithType(component, SimpleTextEditor);
+      component.getInputNode = () => { 
+        return fakeInput;
+       };
+      spyOn(fakeInput, 'setSelectionRange');
+      
+      component.setCaretAtEndOfInput();
+      expect(fakeInput.setSelectionRange).toHaveBeenCalled();
+    });
+    
+    
+    it('should use createTextRange if setSelectionRange is null', () => {
+      let editor = TestUtils.findRenderedComponentWithType(component, SimpleTextEditor);
+      fakeInput.setSelectionRange = null;
+      component.getInputNode = () => { 
+        return fakeInput;
+       };
+      spyOn(fakeInput, 'createTextRange');
+      
+      component.setCaretAtEndOfInput();
+      expect(fakeInput.createTextRange).toHaveBeenCalled();
+    });
+    
+    it('should call move / collapse / select if using createTextRange', () => {
+      let editor = TestUtils.findRenderedComponentWithType(component, SimpleTextEditor);
+      fakeInput.setSelectionRange = null;
+      component.getInputNode = () => { 
+        return fakeInput;
+       };
+      spyOn(fakeInput, 'createTextRange');      
+      spyOn(fakeTextRange, 'moveStart');
+      spyOn(fakeTextRange, 'collapse');
+      spyOn(fakeTextRange, 'select');
+      
+      component.setCaretAtEndOfInput();
+      expect(fakeInput.createTextRange).toHaveBeenCalled();
+      //TODO we shoudl really verify the order of these, as it is important\
+      expect(fakeTextRange.moveStart).toHaveBeenCalled();
+      expect(fakeTextRange.collapse).toHaveBeenCalled();
+      expect(fakeTextRange.select).toHaveBeenCalled();
+    });
+    
+    
+  });
+  
   describe('Events', () => {
     beforeEach(() => {
       cellMetaData.onCommit = function() {};
