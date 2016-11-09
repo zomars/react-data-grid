@@ -8,7 +8,7 @@ Props
 
 ### `cellMetaData`
 
-type: `shapeunknown`
+type: `shaperequire('./PropTypeShapes/CellMetaDataShape')`
 
 
 ### `columnMetrics`
@@ -100,6 +100,11 @@ type: `func`
 ### `onViewportKeyup`
 
 type: `func`
+
+
+### `overScan`
+
+type: `object`
 
 
 ### `rowGetter` (required)

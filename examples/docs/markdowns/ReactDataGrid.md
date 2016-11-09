@@ -95,6 +95,11 @@ type: `func`
 type: `func`
 
 
+### `onCheckCellIsEditable`
+
+type: `func`
+
+
 ### `onClearFilters`
 
 type: `func`
@@ -148,6 +153,17 @@ type: `func`
 ### `onRowUpdated`
 
 type: `func`
+
+
+### `overScan`
+
+type: `object`
+defaultValue: `{
+  colsStart: 5,
+  colsEnd: 5,
+  rowsStart: 5,
+  rowsEnd: 5
+}`
 
 
 ### `rowActionsCell`

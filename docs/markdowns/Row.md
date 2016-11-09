@@ -8,13 +8,33 @@ Props
 
 ### `cellMetaData`
 
-type: `shapeunknown`
+type: `shaperequire('./PropTypeShapes/CellMetaDataShape')`
 
 
 ### `cellRenderer`
 
 type: `func`
 defaultValue: `require('./Cell')`
+
+
+### `colDisplayEnd` (required)
+
+type: `number`
+
+
+### `colDisplayStart` (required)
+
+type: `number`
+
+
+### `colVisibleEnd` (required)
+
+type: `number`
+
+
+### `colVisibleStart` (required)
+
+type: `number`
 
 
 ### `columns` (required)
@@ -49,6 +69,11 @@ type: `number`
 
 
 ### `isRowHovered`
+
+type: `bool`
+
+
+### `isScrolling` (required)
 
 type: `bool`
 
